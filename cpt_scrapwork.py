@@ -214,41 +214,47 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
     for element in alkali_metal_list:
         if element_list[0] in element:
             first_element = Alkali_Metal(element[0], element[1], element[2], element[3])
+            break
         else:
             element_list[0] = element_list[0]
 
     for element in alkaline_earth_metal_list:
         if element_list[0] in element:
             first_element = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3])
+            break
         else:
             element_list[0] = element_list[0]
 
     for element in halogen_list:
         if element_list[1] in element:
             second_element = Halogen(element[0], element[1], element[2], element[3])
+            break
         else:
-            element_list[1] = element[1]
+            element_list[1] = element_list[1]
 
 # Converting classes for the second compound
     for element in alkali_metal_list:
         if second_element_list[0] in element:
             third_element = Alkali_Metal(element[0], element[1], element[2], element[3])
+            break
         else:
             second_element_list[0] = second_element_list[0]
 
     for element in alkaline_earth_metal_list:
         if second_element_list[0] in element:
             third_element = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3])
+            break
         else:
             second_element_list[0] = second_element_list[0]
 
     for element in halogen_list:
         if second_element_list[1] in element:
             fourth_element = Halogen(element[0], element[1], element[2], element[3])
+            break
         else:
             second_element_list[1] = second_element_list[1]
 
-    if isinstance(second_element_list, Halogen) and isinstance(third_element, Alkali_Metal):
+    if isinstance(first_element, Alkali_Metal) and isinstance(third_element, Alkaline_Earth_Metal):
         return True
     else:
         return False
@@ -257,5 +263,5 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
 
     
 
-print(react("C-Cl", "Na-Cl", alkali_metal_list, alkaline_earth_metal_list, halogen_list))
+print(react("Na-F", "Mg-Cl", alkali_metal_list, alkaline_earth_metal_list, halogen_list))
 
