@@ -1,11 +1,10 @@
 """
 author: Aidan Lone
 date: December 14, 2025
-purpose: Scrapwork for computer science culminating performance task
+purpose: Backend programming for computer science culminating performance task
 """
 from elements import *
 from element_groups import *
-
 
 # Decomposition Function
 def decomposition(first_compound: str, second_compound: str) -> str:
@@ -15,11 +14,13 @@ def decomposition(first_compound: str, second_compound: str) -> str:
 
     return individual_elements, secondary_individual_elements
 
-
+# Reacting two compounds together
 def react(first_compound: str, second_compound: str, alkali_metal_list: list, alkaline_earth_metal_list: list, halogen_list: list) -> str:
     element_list, second_element_list = decomposition(first_compound, second_compound)
 
 # Converting classes for the first compound
+
+    # Checks if the element is an alkali metal
     for element in alkali_metal_list:
         if element_list[0] in element:
             first_element = Alkali_Metal(element[0], element[1], element[2], element[3])
@@ -27,6 +28,7 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
         else:
             element_list[0] = element_list[0]
 
+    # Checks if the element is an alkaline earth metal
     for element in alkaline_earth_metal_list:
         if element_list[0] in element:
             first_element = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3])
@@ -34,6 +36,7 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
         else:
             element_list[0] = element_list[0]
 
+    # Checks if the element is a halogen
     for element in halogen_list:
         if element_list[1] in element:
             second_element = Halogen(element[0], element[1], element[2], element[3])
@@ -42,6 +45,8 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
             element_list[1] = element_list[1]
 
 # Converting classes for the second compound
+
+    # Checks if the element is an alkali metal
     for element in alkali_metal_list:
         if second_element_list[0] in element:
             third_element = Alkali_Metal(element[0], element[1], element[2], element[3])
@@ -49,6 +54,7 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
         else:
             second_element_list[0] = second_element_list[0]
 
+    # Checks if the element is an alkaline earth metal
     for element in alkaline_earth_metal_list:
         if second_element_list[0] in element:
             third_element = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3])
@@ -56,6 +62,7 @@ def react(first_compound: str, second_compound: str, alkali_metal_list: list, al
         else:
             second_element_list[0] = second_element_list[0]
 
+    # Checks if the element is a halogen
     for element in halogen_list:
         if second_element_list[1] in element:
             fourth_element = Halogen(element[0], element[1], element[2], element[3])
