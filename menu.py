@@ -7,7 +7,7 @@ import io
 class GUI:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("CuriousChemists (Mini)")
+        self.root.title("CuriousChemists")
         self.root.geometry("900x560")
         self.root.minsize(820, 520)
 

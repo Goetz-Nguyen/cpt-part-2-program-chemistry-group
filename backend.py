@@ -80,11 +80,14 @@ def react(independent_element: str, second_compound: str) -> str:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
         else:
-            print(f"Reaction cannot occur; {first_element.name} is lower on the activity series of" \
-                  f" metals, compared to {second_element.name}.")
+            final_individual_element = first_element.name
+            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+            return f"Reaction cannot occur; {first_element.name} is lower on the activity series of metals, compared to {second_element.name}."
 
     return final_individual_element, final_compound
             
 
                                                                             
 
+print(react("Na", "Mg-Cl"))
