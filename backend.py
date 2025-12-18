@@ -74,7 +74,9 @@ def react(independent_element: str, second_compound: str) -> str:
                                                                                 halogen_list
                                                                                         )
     
-    if isinstance(first_element, Element) and isinstance(second_element, Element):
+    if isinstance(first_element, Alkali_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal)):
+        initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
+        initial_individual_element = first_element.name
         if activity_series.index(first_element.name) > activity_series.index(second_element.name):
             first_element.name, second_element_list[0] = second_element_list[0], first_element.name
             final_individual_element = first_element.name
@@ -85,7 +87,7 @@ def react(independent_element: str, second_compound: str) -> str:
 
             return f"Reaction cannot occur; {first_element.name} is lower on the activity series of metals, compared to {second_element.name}."
 
-    return final_individual_element, final_compound
+    return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}."
             
 
                                                                             
