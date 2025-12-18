@@ -61,12 +61,12 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             second_element_list[1] = second_element_list[1]
 
-    return individual_element, second_element_list, first_element, second_element, third_element
+    return second_element_list, first_element, second_element, third_element
             
 # Reacting two compounds together
 def react(independent_element: str, second_compound: str) -> str:
     
-    individual_element, second_element_list, first_element, second_element, third_element = identify_element_group(
+    second_element_list, first_element, second_element, third_element = identify_element_group(
                                                                                 independent_element,
                                                                                 second_compound,
                                                                                 alkali_metal_list, 
@@ -84,6 +84,5 @@ def react(independent_element: str, second_compound: str) -> str:
     return first_element.name, second_element_list
             
 
-                                                                                    
-print(react("Mg", "Na-Cl"))
+                                                                            
 
