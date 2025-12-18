@@ -77,11 +77,13 @@ def react(independent_element: str, second_compound: str) -> str:
     if isinstance(first_element, Element) and isinstance(second_element, Element):
         if activity_series.index(first_element.name) > activity_series.index(second_element.name):
             first_element.name, second_element_list[0] = second_element_list[0], first_element.name
+            final_individual_element = first_element.name
+            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
         else:
             print(f"Reaction cannot occur; {first_element.name} is lower on the activity series of" \
                   f" metals, compared to {second_element.name}.")
 
-    return first_element.name, second_element_list
+    return final_individual_element, final_compound
             
 
                                                                             
