@@ -100,7 +100,6 @@ iodine = ("I", 53, 2.5, 1)
 astatine = ("At", 85, 2.2, 1)
 
 
-
 # Alkali Metal List
 alkali_metal_list = [lithium, sodium, potassium, rubidium, cesium, francium]
 
