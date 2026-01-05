@@ -69,9 +69,8 @@ class GUI:
         salts = []
 
         try:
-            # local imports (as you wanted)
-            from elements import alkali_metal_list, alkaline_earth_metal_list, halogen_list
-            # a simple, realistic UI set:
+            # local imports
+            from elements import alkali_metal_list, alkaline_earth_metal_list, halogen_list, activity_series
 
             new_metals = []
             new_halogens = []
@@ -79,6 +78,8 @@ class GUI:
             for e in set(alkali_metal_list + alkaline_earth_metal_list):
                 new_metals.append(e[0])
             metals = sorted(new_metals)
+
+            # metals = [].append(metal for metal in metals if metal in activity_series)
 
             for h in set(halogen_list):
                 new_halogens.append(h[0])
