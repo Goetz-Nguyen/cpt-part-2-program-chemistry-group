@@ -82,7 +82,7 @@ def react(independent_element: str, second_compound: str) -> str:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}."
+            return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}, producing loads of energy!."
         
         else:
             final_individual_element = first_element.name
