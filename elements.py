@@ -76,6 +76,7 @@ carbon_oxygen_triple_bond = 1072
 nitrogen_nitrogen_triple_bond = 941
 carbon_nitrogen_triple_bond = 891
 
+#Tuple ("Element symbol",atomic number, electronegativitiy, bond capacity )
 # Alkali Metal Database
 lithium = ("Li", 3, 1.0, 1)
 sodium = ("Na", 11, 0.9, 1)
@@ -92,12 +93,30 @@ strontium = ("Sr", 38, 1.0, 2)
 barium = ("Ba", 56, 0.9, 2)
 radium = ("Ra", 88, 0.9, 2)
 
-# Halogen Data Base
+# Halogen Database
 fluorine = ("F", 9, 4.0, 1)
 chlorine = ("Cl", 17, 3.0, 1)
 bromine = ("Br", 35, 2.8, 1)
 iodine = ("I", 53, 2.5, 1)
 astatine = ("At", 85, 2.2, 1)
+
+# Transition Metal Database
+gold = ("Au", 79, 2.4 (2, 3))
+platinum = ("Pt", 78, 2.2, (2, 3))
+silver = ("Ag", 47, 1.9, 1)
+mercury = ("Hg", 80, 1.9, (2, 3))
+copper = ("Cu", 29, 1.9, (2, 3))
+bismuth = ("Bi", 83, 1.9, (2, 3))
+antimony = ("Sb", 51, 1.9, (2, 3))
+lead = ("Pb", 82, 1.8, (2, 3, 4))
+tin = ("Sn", 50, 1.8, (2, 3))
+nickel = ("Ni", 28, 1.8 (2, 3))
+cobalt = ("Co", 27, 1.8, (2, 3))
+cadmium = ("Cd", 48, 1.7, (2, 3))
+iron = ("Fe", 26, 1.8, (2, 3))
+chromium = ("Cr", 24, 1.6, (2, 3))
+zinc = ("Zn", 30, 1.6, 2)
+manganese = ("Mn", 25, 1.5, (2, 3))
 
 
 # Alkali Metal List
@@ -109,5 +128,8 @@ alkaline_earth_metal_list = [beryllium, magnesium, calcium, strontium, barium, r
 # Halogen List
 halogen_list = [fluorine, chlorine, bromine, iodine, astatine]
 
+# Transition Metal List
+transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antimony, lead, tin, nickel, cobalt, cadmium, iron, chromium, zinc, manganese]
+
 # Activity Series of Metals
-activity_series = ['Pt', 'Au', 'Ag', 'Hg', 'Cu', 'Bi', 'Sb', 'H', 'Pb', 'Sn', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Al', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']
+activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Cu', 'Bi', 'Sb', 'Pb', 'Sn', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']

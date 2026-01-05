@@ -69,28 +69,29 @@ class GUI:
         salts = []
 
         try:
-            # local imports (as you wanted)
-            from elements import alkali_metal_list, alkaline_earth_metal_list, halogen_list
-            # a simple, realistic UI set:
+            # local imports
+            from elements import alkali_metal_list, alkaline_earth_metal_list, halogen_list, activity_series
 
             new_metals = []
             new_halogens = []
 
-            for e in set(alkali_metal_list + alkaline_earth_metal_list):
-                new_metals.append(e[0])
+            for element in set(alkali_metal_list + alkaline_earth_metal_list):
+                new_metals.append(element[0])
             metals = sorted(new_metals)
 
-            for h in set(halogen_list):
-                new_halogens.append(h[0])
+            # metals = [].append(metal for metal in metals if metal in activity_series)
+
+            for halogen in set(halogen_list):
+                new_halogens.append(halogen[0])
             
             halogens = list(new_halogens)
 
             # salts like "Na-Cl"
-            salts = sorted({f"{m}-{h}" for m in metals for h in halogens})
+            salts = sorted({f"{metal}-{halogen}" for metal in metals for halogen in halogens})
         except Exception:
             # fallback (won't crash the UI)
             metals = ["Li", "Na", "K", "Mg", "Ca"]
-            salts = [f"{m}-Cl" for m in metals]
+            salts = [f"{metal}-Cl" for metal in metals]
 
         return metals, salts
 
@@ -113,8 +114,8 @@ class GUI:
             print(salt)
             out = backend.react(metal, salt)
             return str(out)
-        except Exception as e:
-            return f"Error: {e}"
+        except Exception as exception:
+            return f"Error: {exception}"
 
     # ----------------- UI Building -----------------
     def _build_nav(self):
@@ -137,8 +138,8 @@ class GUI:
 
     def _nav_btn(self, text, cmd, danger=False):
         # simple custom button using tk for color control
-        b = tk.Button(self.nav,
-                      text=text,
+        button = tk.Button(self.nav,
+                      text=text, 
                       command=cmd,
                       bg=("#1f2937" if not danger else "#3b1f1f"),
                       fg=self.C_TEXT,
@@ -148,20 +149,20 @@ class GUI:
                       font=("Segoe UI", 11, "bold"),
                       padx=12, pady=10,
                       anchor="w")
-        b.pack(fill="x", padx=14, pady=6)
+        button.pack(fill="x", padx=14, pady=6)
 
     def _build_home(self):
-        f = ttk.Frame(self.main)
-        self.frames["home"] = f
+        frame = ttk.Frame(self.main)
+        self.frames["home"] = frame
 
         # Hero
-        tk.Label(f, text="CuriousChemists", bg=self.C_BG, fg=self.C_TEXT,
+        tk.Label(frame, text="CuriousChemists", bg=self.C_BG, fg=self.C_TEXT,
                  font=("Segoe UI", 24, "bold")).pack(anchor="w", padx=24, pady=(26, 8))
-        tk.Label(f, text="Pick a metal and a salt. Click React. That’s it.",
+        tk.Label(frame, text="Pick a metal and a salt. Click React. That’s it.",
                  bg=self.C_BG, fg=self.C_MUTED, font=("Segoe UI", 12)).pack(anchor="w", padx=24)
 
         # Card
-        card = ttk.Frame(f, style="Card.TFrame")
+        card = ttk.Frame(frame, style="Card.TFrame")
         card.pack(fill="x", padx=24, pady=24)
 
         tk.Label(card, text="Quick Start", bg=self.C_CARD, fg=self.C_TEXT,
@@ -170,19 +171,19 @@ class GUI:
                  bg=self.C_CARD, fg=self.C_MUTED, font=("Segoe UI", 11)).pack(anchor="w", padx=18, pady=(0, 14))
 
         # Small footer
-        tk.Label(f, text="Note: This UI is minimal (short & sort of stable).",
+        tk.Label(frame, text="Note: This UI is minimal (short & sort of stable).",
                  bg=self.C_BG, fg=self.C_MUTED, font=("Segoe UI", 10)).pack(anchor="w", padx=24, pady=(0, 12))
 
     def _build_reaction_lab(self):
-        f = ttk.Frame(self.main)
-        self.frames["react"] = f
+        frame = ttk.Frame(self.main)
+        self.frames["react"] = frame
 
-        tk.Label(f, text="Reaction Lab", bg=self.C_BG, fg=self.C_TEXT,
+        tk.Label(frame, text="Reaction Lab", bg=self.C_BG, fg=self.C_TEXT,
                  font=("Segoe UI", 22, "bold")).pack(anchor="w", padx=24, pady=(22, 6))
-        tk.Label(f, text="Single-replacement-style reaction (based on the backend rules).",
+        tk.Label(frame, text="Single-replacement-style reaction (based on the backend rules).",
                  bg=self.C_BG, fg=self.C_MUTED, font=("Segoe UI", 11)).pack(anchor="w", padx=24, pady=(0, 14))
 
-        card = ttk.Frame(f, style="Card.TFrame")
+        card = ttk.Frame(frame, style="Card.TFrame")
         card.pack(fill="both", expand=True, padx=24, pady=18)
 
         # Inputs row
@@ -249,8 +250,8 @@ class GUI:
 
     # ----------------- Navigation -----------------
     def show(self, name: str):
-        for fr in self.frames.values():
-            fr.pack_forget()
+        for frame in self.frames.values():
+            frame.pack_forget()
         self.frames[name].pack(fill="both", expand=True)
 
     def run(self):
