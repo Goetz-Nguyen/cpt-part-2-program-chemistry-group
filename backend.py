@@ -81,15 +81,35 @@ def react(independent_element: str, second_compound: str) -> str:
             first_element.name, second_element_list[0] = second_element_list[0], first_element.name
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+            return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}, producing loads of energy!."
+        
+        else:
+            final_individual_element = first_element.name
+            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+            return f"Reaction cannot occur; {first_element.name} is lower on the activity series of metals, compared to {second_element.name}."
+        
+    elif isinstance(first_element, Alkaline_Earth_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal)):
+        initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
+        initial_individual_element = first_element.name
+        
+        if activity_series.index(first_element.name) > activity_series.index(second_element.name):
+            first_element.name, second_element_list[0] = second_element_list[0], first_element.name
+            final_individual_element = first_element.name
+            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+            return f"A not-as-rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}."
+        
         else:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
             return f"Reaction cannot occur; {first_element.name} is lower on the activity series of metals, compared to {second_element.name}."
 
-    return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}."
+    
             
 
                                                                             
 
-print(react("Na", "Mg-Cl"))
+print(react("Ca", "Mg-Cl"))

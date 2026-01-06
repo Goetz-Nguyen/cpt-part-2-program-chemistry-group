@@ -119,7 +119,6 @@ zinc = ("Zn", 30, 1.6, 2)
 manganese = ("Mn", 25, 1.5, 2)
 
 
-
 # Alkali Metal List
 alkali_metal_list = [lithium, sodium, potassium, rubidium, cesium, francium]
 
