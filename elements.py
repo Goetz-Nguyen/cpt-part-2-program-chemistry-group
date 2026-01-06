@@ -117,7 +117,6 @@ iron = ("Fe", 26, 1.8, 2)
 chromium = ("Cr", 24, 1.6, 2)
 zinc = ("Zn", 30, 1.6, 2)
 manganese = ("Mn", 25, 1.5, 2)
-# hello
 
 
 # Alkali Metal List
@@ -133,4 +132,4 @@ halogen_list = [fluorine, chlorine, bromine, iodine, astatine]
 transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antimony, lead, tin, nickel, cobalt, cadmium, iron, chromium, zinc, manganese]
 
 # Activity Series of Metals
-activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Cu', 'Bi', 'Sb', 'Pb', 'Sn', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']
+activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Be', 'Fr', 'Cu', 'Bi', 'Sb', 'Cs', 'Ra', 'Pb', 'Sn', 'Rb', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']

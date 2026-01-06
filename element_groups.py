@@ -3,11 +3,10 @@
 # Class system
 class Element:
 
-    def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int) -> None:
+    def __init__(self, name: str, atomic_number: int, electronegativity: float) -> None:
         self.name = name
         self.atomic_number = atomic_number
         self.electronegativity = electronegativity
-        self.bonding_capacity = bonding_capacity
 
     def __str__(self):
         return f"Element Name: {self.name}\n" \
@@ -20,7 +19,9 @@ class Element:
 class Alkali_Metal(Element):
 
     def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int) -> None:
-        super().__init__(name, atomic_number, electronegativity, bonding_capacity)
+        super().__init__(name, atomic_number, electronegativity)
+
+        self.bonding_capacity = bonding_capacity
 
     def declare_element(self):
         print(f"A shiny instance of elemental {self.name} is observed! Be careful around this one!")
@@ -35,7 +36,9 @@ class Alkali_Metal(Element):
 class Alkaline_Earth_Metal(Element):
 
     def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int) -> None:
-        super().__init__(name, atomic_number, electronegativity, bonding_capacity)
+        super().__init__(name, atomic_number, electronegativity)
+
+        self.bonding_capacity = bonding_capacity
 
     def declare_element(self):
         print(f"An instance of elemental {self.name} is observed! Be careful, it's a fire hazard!")
@@ -50,7 +53,9 @@ class Alkaline_Earth_Metal(Element):
 class Halogen(Element):
 
     def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int) -> None:
-        super().__init__(name, atomic_number, electronegativity, bonding_capacity)
+        super().__init__(name, atomic_number, electronegativity)
+
+        self.bonding_capacity = bonding_capacity
 
     def declare_element(self):
         print(f"An instance of elemental {self.name} is observed! It's eager to react!")
@@ -65,7 +70,9 @@ class Halogen(Element):
 class Noble_Gas(Element):
 
     def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int) -> None:
-        super().__init__(name, atomic_number, electronegativity, bonding_capacity)
+        super().__init__(name, atomic_number, electronegativity)
+
+        self.bonding_capacity = bonding_capacity
 
     def declare_element(self):
         print(f"An instance of elemental {self.name} is observed! It's visibly dormant!")
