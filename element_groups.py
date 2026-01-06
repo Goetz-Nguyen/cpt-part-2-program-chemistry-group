@@ -1,4 +1,5 @@
 
+ 
 # Class system
 class Element:
 
@@ -74,3 +75,21 @@ class Noble_Gas(Element):
                f"Group: Noble Gas\n" \
                f"Atomic Number {self.atomic_number}\n" \
                f"Electronegativity: {self.electronegativity}"
+    
+# Transition Metals Class
+class Transition_Metal(Element):
+
+    def __init__(self, name: str, atomic_number: int, electronegativity: float, possible_charges: int) -> None:
+        super().__init__(name, atomic_number, electronegativity)
+        self.possible_charges = possible_charges
+
+    def declare_element(self):
+        print(f"An instance of elemental {self.name} is observed! It's undecided on its ionic charge!")
+
+    def __str__(self):
+        return f"Element Name: {self.name}\n" \
+               f"Group: Transition Metal\n" \
+               f"Atomic Number {self.atomic_number}\n" \
+               f"Possible Charges: {self.possible_charges}"
+    
+    
