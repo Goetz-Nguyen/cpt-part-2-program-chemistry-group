@@ -34,6 +34,14 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             individual_element = individual_element
 
+    # Checks if the element is a transition metal
+    for element in transition_metal_list:
+        if individual_element in element:
+            first_element = Transition_Metal(element[0], element[1], element[2], element[3])
+            break
+        else:
+            first_element = first_element
+
 
 # Converting classes for the second compound
 
@@ -91,7 +99,7 @@ def react(independent_element: str, second_compound: str) -> str:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"A rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}. Loads of energy are produced!."
+            return f"A vigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}. Loads of energy are produced!."
         
         elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
             final_individual_element = first_element.name
@@ -114,7 +122,7 @@ def react(independent_element: str, second_compound: str) -> str:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"A not-as-rigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}. Some bright flames are observed!"
+            return f"A not-as-vigorous reaction between {initial_individual_element} (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} and {final_compound}. Some bright flames are observed!"
         
         elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
             final_individual_element = first_element.name

@@ -132,4 +132,4 @@ halogen_list = [fluorine, chlorine, bromine, iodine, astatine]
 transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antimony, lead, tin, nickel, cobalt, cadmium, iron, chromium, zinc, manganese]
 
 # Activity Series of Metals
-activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Be', 'Fr' 'Cu', 'Bi', 'Sb', 'Cs', 'Ra' 'Pb', 'Sn', 'Rb' 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']
+activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Cu', 'Bi', 'Sb', 'Pb', 'Sn', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']

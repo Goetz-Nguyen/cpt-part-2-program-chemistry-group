@@ -70,14 +70,10 @@ class GUI:
 
         try:
             # local imports
-            from elements import alkali_metal_list, alkaline_earth_metal_list, halogen_list, activity_series
-
-            new_metals = []
+            from elements import halogen_list
+            from elements import activity_series as metals
+            
             new_halogens = []
-
-            for element in set(alkali_metal_list + alkaline_earth_metal_list):
-                new_metals.append(element[0])
-            metals = sorted(new_metals)
 
             # metals = [].append(metal for metal in metals if metal in activity_series)
 
