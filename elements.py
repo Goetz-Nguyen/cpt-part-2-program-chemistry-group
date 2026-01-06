@@ -117,6 +117,7 @@ iron = ("Fe", 26, 1.8, 2)
 chromium = ("Cr", 24, 1.6, 2)
 zinc = ("Zn", 30, 1.6, 2)
 manganese = ("Mn", 25, 1.5, 2)
+# hello
 
 
 # Alkali Metal List
