@@ -93,6 +93,7 @@ def react(independent_element: str, second_compound: str) -> str:
     elif isinstance(first_element, Alkaline_Earth_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal)):
         initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
         initial_individual_element = first_element.name
+        
         if activity_series.index(first_element.name) > activity_series.index(second_element.name):
             first_element.name, second_element_list[0] = second_element_list[0], first_element.name
             final_individual_element = first_element.name
