@@ -1,4 +1,4 @@
-compounds = {
+compound_list = {
         #   {COMPOUND NAME}: [({CHEMICAL FORMULA}), {NUMBER OF ATOMS}, {TYPE OF COMPOUND}, {ENTHALPY OF FORMATION}]
             "Methane": [("CH4"), 5, "Organic (Alkane)", -74.4],
             "Ethane": [("C2H6"), 8, "Organic (Alkane)", -84.68],
@@ -27,3 +27,48 @@ compounds = {
             "Butane": [("C4H10"), 14, "Organic (Alkane)", -125.6],
             "Acetic Acid": [("CH3COOH"), 8, "Organic (Carboxylic Acid)", -484.5],
 }
+
+def main():
+    list_of_choices = []
+    list_of_compound_names = []
+    i = 1
+    continuous_loop = 0
+
+    for key in compound_list:
+        print(f"{i}. {key}")
+        list_of_choices.append(i)
+        list_of_compound_names.append(key)
+        i += 1
+        
+    print("\n")
+    
+    while continuous_loop == 0:
+        try:
+
+            
+            user_choice = int(input("Please press the number corresponding to the compound you would like to inspect: "))
+
+            while user_choice not in list_of_choices:
+                print("That is not a selectable option; please try again.")
+                user_choice = int(input("Please press the number corresponding to the compound you would like to inspect: "))
+
+            print("--------Compound Properties--------")
+            property_counter = 0
+            for item in compound_list[list_of_compound_names[user_choice - 1]]:
+                if property_counter == 0:
+                    print(f"Chemical Formula: {item}")
+                elif property_counter == 1:
+                    print(f"Total number of atoms: {item}")
+                elif property_counter == 2:
+                    print(f"Compound Type: {item}")
+                elif property_counter == 3:
+                    print(f"Enthalpy of Formation: {item}")
+                property_counter += 1
+            print("----------------")
+
+        except ValueError:
+            print("Invalid input; please try again.")
+            
+
+if __name__ == "__main__":
+    main()
