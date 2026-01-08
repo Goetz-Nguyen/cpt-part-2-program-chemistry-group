@@ -176,7 +176,8 @@ class GUI:
 
         tk.Label(frame, text="Reaction Lab", bg=self.C_BG, fg=self.C_TEXT,
                  font=("Segoe UI", 22, "bold")).pack(anchor="w", padx=24, pady=(22, 6))
-        tk.Label(frame, text="Single-replacement-style reaction (based on the backend rules).",
+        tk.Label(frame, text="             Single-displacement-style reaction: Determined through assessing the reactivity\n " \
+        "of the lone element, and the cation (first element) of the compound.",
                  bg=self.C_BG, fg=self.C_MUTED, font=("Segoe UI", 11)).pack(anchor="w", padx=24, pady=(0, 14))
 
         card = ttk.Frame(frame, style="Card.TFrame")
