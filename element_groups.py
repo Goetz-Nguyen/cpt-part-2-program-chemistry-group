@@ -239,5 +239,4 @@ class Transition_Metal(Element):
                f"Atomic Number: {self.atomic_number}\n" \
                f"Electronegativity: {self.electronegativity}" \
                f"Possible Charges: {self.possible_charges}"
-    
-    
+       

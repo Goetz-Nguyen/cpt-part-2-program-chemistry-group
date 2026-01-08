@@ -133,3 +133,5 @@ transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antim
 
 # Activity Series of Metals
 activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Be', 'Fr', 'Cu', 'Bi', 'Sb', 'Cs', 'Ra', 'Pb', 'Sn', 'Rb', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']
+
+# List of chemical formulas that will react in Reaction Lab
