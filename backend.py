@@ -243,4 +243,3 @@ def react(independent_element: str, second_compound: str) -> str:
 
                                                                             
 
-print(react("Ca", "Mg-Cl"))
