@@ -5,6 +5,7 @@ purpose: Backend programming for computer science culminating performance task
 """
 from elements import *
 from element_groups import *
+from compounds import *
 
 # Decomposition Function
 def _decomposition(independent_element: str, second_compound: str) -> list:
