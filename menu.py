@@ -123,21 +123,10 @@ class GUI:
             from compounds import compound_list # Muhammad Work
             new_halogens = []
 
-
-
-
-            # metals = [].append(metal for metal in metals if metal in activity_series)
-
-
-
-
             for halogen in set(halogen_list):
                 new_halogens.append(halogen[0])
            
             halogens = list(new_halogens)
-
-
-
 
             # salts like "Na-Cl"
             salts = sorted({f"{metal}-{halogen}" for metal in metals for halogen in halogens})
@@ -145,9 +134,6 @@ class GUI:
             # fallback (won't crash the UI)
             metals = ["Li", "Na", "K", "Mg", "Ca"]
             salts = [f"{metal}-Cl" for metal in metals]
-
-
-
 
         return metals, salts
 
@@ -173,7 +159,7 @@ class GUI:
             if not hasattr(backend, "react"):
                 return "Error: backend.react() not found."
            
-            print(salt)
+
             out = backend.react(metal, salt)
             return str(out)
         except Exception as exception:
@@ -355,9 +341,6 @@ class GUI:
         frame = ttk.Frame(self.main)
         self.frames["compound"] = frame
 
-
-
-
         tk.Label(frame, text="Common Compounds", bg=self.C_BG, fg=self.C_TEXT,
                  font=("Segoe UI", 22, "bold")).pack(anchor="w", padx=24, pady=(22, 6))
         tk.Label(frame, text="Common Compounds and their basic Info.",
@@ -367,36 +350,27 @@ class GUI:
         card.pack(fill="both", expand=True, padx=24, pady=18)
 
 
-
-
         # Inputs row
         row = tk.Frame(card, bg=self.C_CARD)
         row.pack(fill="x", padx=18, pady=(16, 10))
 
 
+        # React button
+        info_btn = tk.Button(row, text="FETCH INFO",
+                              command=print(), # PLACEHOLDER
+                              bg=self.C_ACCENT, fg="white",
+                              activebackground=self.C_ACCENT2,
+                              activeforeground="#07101a",
+                              relief="flat",
+                              font=("Segoe UI", 11, "bold"),
+                              padx=18, pady=8)
+        info_btn.pack(side="right")
 
 
         tk.Label(row, text="Compound:", bg=self.C_CARD, fg=self.C_TEXT, font=("Segoe UI", 11, "bold")).pack(side="left")
-        self.metal_var = tk.StringVar(value=self.metals[0] if self.metals else "")
-        metal_cb = ttk.Combobox(row, textvariable=self.metal_var, values=self.metals, state="readonly", width=10)
-        metal_cb.pack(side="left", padx=(10, 18))
-
-
-
-
-        """tk.Label(row, text="Metal:", bg=self.C_CARD, fg=self.C_TEXT, font=("Segoe UI", 11, "bold")).pack(side="left")
-        self.metal_var = tk.StringVar(value=self.metals[0] if self.metals else "")
-        metal_cb = ttk.Combobox(row, textvariable=self.metal_var, values=self.metals, state="readonly", width=10)
-        metal_cb.pack(side="left", padx=(10, 18))
-
-
-
-
-        tk.Label(row, text="Salt:", bg=self.C_CARD, fg=self.C_TEXT, font=("Segoe UI", 11, "bold")).pack(side="left")
-        self.salt_var = tk.StringVar(value=self.salts[0] if self.salts else "")
-        salt_cb = ttk.Combobox(row, textvariable=self.salt_var, values=self.salts, state="readonly", width=18)
-        salt_cb.pack(side="left", padx=(10, 18))"""
- 
+        self.compound = tk.StringVar(value=self.metals[0] if self.metals else "")
+        compound_cb = ttk.Combobox(row, textvariable=self.metal_var, values=self.metals, state="readonly", width=10)
+        compound_cb.pack(side="left", padx=(10, 18))
 
 
 
@@ -405,9 +379,6 @@ class GUI:
     def _on_react(self):
         metal = (self.metal_var.get() or "").strip()
         salt = (self.salt_var.get() or "").strip()
-        print(type(salt))
-
-
 
 
         # Anti-crash checks
