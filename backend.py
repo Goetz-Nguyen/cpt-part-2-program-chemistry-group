@@ -125,19 +125,19 @@ def react(independent_element: str, second_compound: str) -> str:
                     final_individual_element = final_individual_element
 
 
-            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound}. Loads of energy are produced!."
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Loads of energy are produced!."
         
         elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
         else:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
     elif isinstance(first_element, Alkaline_Earth_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal) or isinstance(second_element, Transition_Metal)):
         initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
@@ -174,19 +174,19 @@ def react(independent_element: str, second_compound: str) -> str:
                     final_individual_element = final_individual_element
 
 
-            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound}. Some bright flames are observed!"
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Some bright flames are observed!"
         
         elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
         else:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
     elif isinstance(first_element, Transition_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal) or isinstance(second_element, Transition_Metal)):
         initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
@@ -223,19 +223,19 @@ def react(independent_element: str, second_compound: str) -> str:
                     final_individual_element = final_individual_element
 
 
-            return f"A variable reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound}. It's brimming with possibilities!"
+            return f"A variable reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). It's brimming with possibilities!"
         
         elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
         else:
             final_individual_element = first_element.name
             final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} remains as is."
+            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
 
     
             
