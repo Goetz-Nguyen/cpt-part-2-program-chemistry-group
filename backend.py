@@ -10,14 +10,36 @@ from element_groups import *
 from compounds import *
 
 # Decomposition Function
-def _decomposition(independent_element: str, second_compound: str) -> list:
+def _decomposition(second_compound: str) -> list:
+    """
+    Breaks down a compound into its individual elements
+    
+    Arguements:
+        - second_compound (str): The compound that will be broken down
 
-    secondary_individual_elements = second_compound.split("-")
+    Returns:
+        - broken_down_elements (list): A list containing the two chemical symbols
+                                       that made up the original compound.
 
-    return independent_element, secondary_individual_elements
+    Example:
 
-def identify_element_group(independent_element: str, second_compound: str, alkali_metal_list: list, alkaline_earth_metal_list: list, halogen_list: list, transition_metal_list: list) -> Element:
-    individual_element, second_element_list = _decomposition(independent_element, second_compound)
+    compound = "Ag-Cl"
+    _decomposition(compound)
+    ["Ag", "Cl"]
+    """
+
+    # The list containing the individual elements are created
+    broken_down_elements = second_compound.split("-")
+
+    return broken_down_elements
+
+
+# Identifying the element groups that each element in the reaction belong to
+def identify_element_group(individual_element: str, second_compound: str, 
+                           alkali_metal_list: list, alkaline_earth_metal_list: list, halogen_list: list, 
+                           transition_metal_list: list) -> Element:
+    
+    second_element_list = _decomposition(second_compound)
 
 # Converting classes for the independent element
 
@@ -45,10 +67,9 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             individual_element = individual_element
 
-
 # Converting classes for the second compound
 
-    # Checks if the element is an alkali metal
+    # Checks if the first element is an alkali metal
     for element in alkali_metal_list:
         if second_element_list[0] in element:
             second_element = Alkali_Metal(element[0], element[1], element[2], element[3], element[4])
@@ -56,7 +77,7 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             second_element_list[0] = second_element_list[0]
 
-    # Checks if the element is an alkaline earth metal
+    # Checks if the first element is an alkaline earth metal
     for element in alkaline_earth_metal_list:
         if second_element_list[0] in element:
             second_element = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3], element[4])
@@ -64,7 +85,7 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             second_element_list[0] = second_element_list[0]
 
-    # Checks if the element is a transition metal
+    # Checks if the first element is a transition metal
     for element in transition_metal_list:
         if second_element_list[0] in element:
             second_element = Transition_Metal(element[0], element[1], element[2], element[3], element[4])
@@ -80,14 +101,16 @@ def identify_element_group(independent_element: str, second_compound: str, alkal
         else:
             second_element_list[1] = second_element_list[1]
 
-    return second_element_list, first_element, second_element
-            
+    return second_element_list, first_element, second_element, third_element
+
+
+
 # Reacting two compounds together
 def react(independent_element: str, second_compound: str) -> str:
     now = dt.now()
     dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
     
-    second_element_list, first_element, second_element = identify_element_group(
+    second_element_list, first_element, second_element, third_element = identify_element_group(
                                                                                 independent_element,
                                                                                 second_compound,
                                                                                 alkali_metal_list, 
@@ -95,178 +118,55 @@ def react(independent_element: str, second_compound: str) -> str:
                                                                                 halogen_list, transition_metal_list
                                                                                         )
     
-    if isinstance(first_element, Alkali_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal) or isinstance(second_element, Transition_Metal)):
-        initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
-        initial_individual_element = first_element.name
+    # Storing the chemical symbol of the compound pre-reaction (without the "-") into a separate variable
+    initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
 
-        if activity_series.index(first_element.name) > activity_series.index(second_element.name):
-            first_element.name, second_element_list[0] = second_element_list[0], first_element.name
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+    # Storing the chemical symbol of the individual element pre-reaction into a separate variable
+    initial_individual_element = first_element.name
+
+    # Checks the activity series of metals to see if the reaction can occur 
+    # (Individual element must have a higher index on the activity series compared to
+    # the first element in the compound for it to occur)
+    if activity_series.index(first_element.name) > activity_series.index(second_element.name):
+
+        # The chemical symbols are swapped, as per the process of a single-displacement reaction
+        first_element.name, second_element_list[0] = second_element_list[0], first_element.name
+
+        # Stores the name of the individual element post-reaction into another variable
+        final_individual_element = first_element.name
+
+        # Stores the name of the compound post-reaction into another variable
+        final_compound = f"{second_element_list[0]}{second_element_list[1]}"
 
 
-            # Checks if the element is an alkali metal
-            for element in alkali_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkali_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
+        # Checks if the newly-isolated element is an alkali metal
+        for element in alkali_metal_list:
+            if final_individual_element in element:
+                element_attributes = Alkali_Metal(element[0], element[1], element[2], element[3], element[4])
+                break
             else:
                 final_individual_element = final_individual_element
 
-            # Checks if the element is an alkaline earth metal
-            for element in alkaline_earth_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
-
-            # Checks if the element is a transition metal
-            for element in transition_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Transition_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Loads of energy are produced!."
-        
-        elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-        
-        else:
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-        
-    elif isinstance(first_element, Alkaline_Earth_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal) or isinstance(second_element, Transition_Metal)):
-        initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
-        initial_individual_element = first_element.name
-        
-        if activity_series.index(first_element.name) > activity_series.index(second_element.name):
-            first_element.name, second_element_list[0] = second_element_list[0], first_element.name
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-
-            # Checks if the element is an alkali metal
-            for element in alkali_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkali_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
+        # Checks if the newly-isolated element is an alkaline earth metal
+        for element in alkaline_earth_metal_list:
+            if final_individual_element in element:
+                element_attributes = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3], element[4])
+                break
             else:
                 final_individual_element = final_individual_element
 
-            # Checks if the element is an alkaline earth metal
-            for element in alkaline_earth_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
-
-            # Checks if the element is a transition metal
-            for element in transition_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Transition_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Some bright flames are observed!"
-        
-        elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-        
-        else:
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-        
-    elif isinstance(first_element, Transition_Metal) and (isinstance(second_element, Alkali_Metal) or isinstance(second_element, Alkaline_Earth_Metal) or isinstance(second_element, Transition_Metal)):
-        initial_compound = f"{second_element_list[:][0]}{second_element_list[:][1]}"
-        initial_individual_element = first_element.name
-        
-        if activity_series.index(first_element.name) > activity_series.index(second_element.name):
-            first_element.name, second_element_list[0] = second_element_list[0], first_element.name
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-
-            # Checks if the element is an alkali metal
-            for element in alkali_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkali_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
+        # Checks if the newly-isolated element is a transition metal
+        for element in transition_metal_list:
+            if final_individual_element in element:
+                element_attributes = Transition_Metal(element[0], element[1], element[2], element[3], element[4])
+                break
             else:
                 final_individual_element = final_individual_element
 
-            # Checks if the element is an alkaline earth metal
-            for element in alkaline_earth_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Alkaline_Earth_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
+        # Checks the element groups of each isolated element to print a unique message catered to the energy changes that would occur
+        if isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
 
-            # Checks if the element is a transition metal
-            for element in transition_metal_list:
-                if final_individual_element in element:
-                    element_attributes = Transition_Metal(element[0], element[1], element[2], element[3], element[4])
-                    break
-                else:
-                    final_individual_element = final_individual_element
-
+            # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
                     f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
@@ -274,36 +174,147 @@ def react(independent_element: str, second_compound: str) -> str:
                 with open("history.txt", "w") as f:
                     f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
 
-            return f"A variable reaction between {initial_individual_element} ({first_element.full_name}) (an {str(type(first_element)).split('\'')[1].split('.')[1].replace("_", " ")}) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). It's brimming with possibilities!"
+            # Returns a string describing the reaction in-question
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Loads of energy are produced!"
         
-        elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
 
+            # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
 
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-        
-        else:
-            final_individual_element = first_element.name
-            final_compound = f"{second_element_list[0]}{second_element_list[1]}"
-
-            if os.path.isfile("history.txt"):
-                with open("history.txt", "a") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-            else:
-                with open("history.txt", "w") as f:
-                    f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
-
-            return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
-
+            # Returns a string describing the reaction in-question
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Don't stand too close!"
     
-            
+        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
 
-                                                                            
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
 
+            # Returns a string describing the reaction in-question
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The air around it starts to heat up!"
+
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Some bright flames are observed!"
+        
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The resulting flames are scorching hot!"
+    
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Ultraviolet lights spirals out of the reaction site!"
+        
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The erupting sparks start to tickle!"
+        
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The site brims with possibilities!"
+    
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
+
+            # Writes this reaction into history.txt
+            if os.path.isfile("history.txt"):
+                with open("history.txt", "a") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+            else:
+                with open("history.txt", "w") as f:
+                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+
+            # Returns a string describing the reaction in-question
+            return f"A unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The material starts to feel lukewarm..."
+    
+    
+    elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
+
+        # The reaction is unable to occur; as such, the "final" variables will be the
+        # same as the "initial" ones
+        final_individual_element = first_element.name
+        final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+        # Writes this non-reaction into history.txt
+        if os.path.isfile("history.txt"):
+            with open("history.txt", "a") as f:
+                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+        else:
+            with open("history.txt", "w") as f:
+                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+
+        # Returns a string, stating that the reaction could not occur
+        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
+        
+    else:
+
+        # The reaction is unable to occur; as such, the "final" variables will be the
+        # same as the "initial" ones
+        final_individual_element = first_element.name
+        final_compound = f"{second_element_list[0]}{second_element_list[1]}"
+
+        # Writes this non-reaction into history.txt
+        if os.path.isfile("history.txt"):
+            with open("history.txt", "a") as f:
+                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+        else:
+            with open("history.txt", "w") as f:
+                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+
+        # Returns a string, stating that the reaction could not occur
+        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
+        
