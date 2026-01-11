@@ -61,7 +61,6 @@ chemical_formula_list = ["AgAt", "AgBr", "AgCl", "AgF", "AgI",
 
 
 # List of compound names that will react in Reaction Lab
-
 chemical_name_list = ["Silver Astatide", "Silver Bromide", "Silver Chloride", "Silver Fluoride", "Silver Iodide",
                       "Gold Astatide", "Gold Bromide", "Gold Chloride", "Gold Fluoride", "Gold Iodide",
                       "Barium Astatide", "Barium Bromide", "Barium Chloride", "Barium Fluoride", "Barium Iodide",
