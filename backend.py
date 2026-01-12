@@ -1,6 +1,6 @@
 """
-author: Aidan Lone
-date: December 14, 2025
+author: Aidan Lone, Husnain Sidhu, Muhammad Ali, Malaz Nakaweh, Dabeer Awan
+date: January 12, 2026
 purpose: Backend programming for computer science culminating performance task
 """
 import os
@@ -14,7 +14,7 @@ def _decomposition(second_compound: str) -> list:
     """
     Breaks down a compound into its individual elements
     
-    Arguements:
+    Arguments:
         - second_compound (str): The compound that will be broken down
 
     Returns:
@@ -23,8 +23,8 @@ def _decomposition(second_compound: str) -> list:
 
     Example:
 
-    compound = "Ag-Cl"
-    _decomposition(compound)
+    >>> compound = "Ag-Cl"
+    >>> _decomposition(compound)
     ["Ag", "Cl"]
     """
 
@@ -38,6 +38,32 @@ def _decomposition(second_compound: str) -> list:
 def identify_element_group(individual_element: str, second_compound: str, 
                            alkali_metal_list: list, alkaline_earth_metal_list: list, halogen_list: list, 
                            transition_metal_list: list) -> Element:
+    """
+    Takes the decomposed elements and associates them with an appropriate group
+    
+    Arguments:
+
+        - individual_element (str): The chemical symbol of the isolated element
+        - second_compound (str): The chemical formula of the second compound
+        - alkali_metal_list (list): A list containing all possible alkali metals
+        - alkaline_earth_metal_list (list): A list containinfg all possible alkaline earth metals
+        - halogen_list (list): A list containing all possible halogens
+        - transition_metal_list (list): A list containing all possible transition metals
+
+    Returns:
+
+        Element - Individual elements, this time associated with a class
+
+    Example:
+
+    >>> compound = "Ag-Cl"
+    >>> individual_element = "Be"
+    >>> identify_element_group(individual_element, compound)
+
+    Alkaline_Earth_Metal("Be", 4, 1.5, 2, "Beryllium")
+    Transition_Metal("Ag", 47, 1.9, 1, "Silver")
+    Halogen("Cl", 17, 3.0, 1, "Chlorine")
+    """
     
     second_element_list = _decomposition(second_compound)
 
@@ -107,6 +133,35 @@ def identify_element_group(individual_element: str, second_compound: str,
 
 # Reacting two compounds together
 def react(independent_element: str, second_compound: str) -> str:
+    """
+    Reacts an independent element with a compound, provided its conditions are set.
+    This function will make heavy use of the activity series of metals in 
+    elements.py to find the index of the metals reacting. The index of the lone
+    metal must be higher than the index of the metal in the compound for a
+    reaction to be successful.
+
+    Arguments:
+
+        - independent_element (str): The chemical symbol of the independent element
+        - second_compound (str): The chemical formula of the compound
+
+    Returns:
+        str - A statement stating if the reaction took place or not, with a unique
+              message tailored to the specific reaction.
+
+    Example:
+
+    >>> react("Hg", "Na-Cl")
+    Reaction cannot occur; Hg (Mercury) is lower on the activity series of metals, 
+    compared to Na. NaCl (Sodium Chloride) remains as is.
+    >>> react("K", "Au-Cl")
+    A vigorous reaction between K (Potassium) (an Alkali Metal) and AuCl 
+    (Gold Chloride) occurred, producing Au (Gold) (a Transition Metal) 
+    and KCl (Potassium Chloride). The air around it starts to heat up!
+    >>> react("K", "K-Br")
+    Reaction cannot occur; K (Potassium) cannot react with itself! 
+    KBr (Potassium Bromide) remains as is.
+    """
     now = dt.now()
     dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
     

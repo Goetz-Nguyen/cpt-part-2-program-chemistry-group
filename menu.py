@@ -12,7 +12,7 @@ class GUI:
         self.root.geometry("900x560")
         self.root.minsize(820, 520)
 
-        # THEME COLORS (Don't touch guys, ik what im doing)
+        # THEME COLORS
         self.C_BG = "#0b1220"
         self.C_PANEL = "#111a2c"
         self.C_CARD = "#17233b"
@@ -40,7 +40,6 @@ class GUI:
         self.nav = ttk.Frame(self.root, style="Panel.TFrame")
         self.nav.pack(side="left", fill="y")
 
-        # Guys i told you this is neater (malaz)
         self.main = ttk.Frame(self.root)
         self.main.pack(side="right", fill="both", expand=True)
 
@@ -86,7 +85,7 @@ class GUI:
 
         return metals, salts, compound_names, compound_list_data
     
-    # This lets us use backend.react() but the data returned looks prettier ig
+    # This lets us use backend.react() but the data returned looks prettier 
     def _react_backend(self, metal: str, salt: str) -> str:
         try:
             buf = io.StringIO()
@@ -163,7 +162,7 @@ class GUI:
         self.history_box.insert("1.0", content + "\n")
         self.history_box.configure(state="disabled")
 
-    # NOW, we build the GUI :))))
+    # Building the GUI
     def _build_nav(self):
         header = tk.Frame(self.nav, bg=self.C_PANEL)
         header.pack(fill="x", padx=14, pady=16)
@@ -428,7 +427,7 @@ class GUI:
         # initialize state
         self._refresh_history()
 
-    # Those are action helpers, gl w making the docstrings lol
+    # Those are action helpers
     def _on_react(self):
         metal = (self.metal_var.get() or "").strip()
         salt = (self.salt_var.get() or "").strip()

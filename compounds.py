@@ -1,3 +1,8 @@
+"""
+author: Aidan Lone, Husnain Sidhu, Muhammad Ali, Malaz Nakaweh, Dabeer Awan
+date: January 12, 2026
+purpose: Database for compound characteristics and chemical formulas
+"""
 compound_list = {
         #   {COMPOUND NAME}: [({CHEMICAL FORMULA}), {NUMBER OF ATOMS}, {TYPE OF COMPOUND}, {ENTHALPY OF FORMATION}]
             "Methane": [("CH4"), 5, "Organic (Alkane)", -74.4],

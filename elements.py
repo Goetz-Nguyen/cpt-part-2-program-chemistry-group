@@ -1,4 +1,10 @@
-# Alkali Metal Database
+"""
+author: Aidan Lone, Husnain Sidhu, Muhammad Ali, Malaz Nakaweh, Dabeer Awan
+date: January 12, 2026
+purpose: Database for individual element characteristics
+"""
+
+#  Alkali Metal Database
 
 # Tuple ("Element symbol", atomic number, electronegativitiy, bond capacity, full name)
 lithium = ("Li", 3, 1.0, 1, "Lithium")
@@ -34,21 +40,21 @@ astatine = ("At", 85, 2.2, 1, "Astatine")
 
 # Tuple ("Element symbol", atomic number, electronegativitiy, possible charges, full name)
 gold = ("Au", 79, 2.4, 2, "Gold")
-platinum = ("Pt", 78, 2.2, 2, "Platinum")
-silver = ("Ag", 47, 1.9, 1, "Silver")
+platinum = ("Pt", 78, 2.2, 4, "Platinum")
+silver = ("Ag", 47, 1.9, 3, "Silver")
 mercury = ("Hg", 80, 1.9, 2, "Mercury")
-copper = ("Cu", 29, 1.9, 2, "Copper")
-bismuth = ("Bi", 83, 1.9, 2, "Bismuth")
+copper = ("Cu", 29, 1.9, 4, "Copper")
+bismuth = ("Bi", 83, 1.9, 5, "Bismuth")
 antimony = ("Sb", 51, 1.9, 2, "Antimony")
 lead = ("Pb", 82, 1.8, 2, "Lead")
 tin = ("Sn", 50, 1.8, 2, "Tin")
 nickel = ("Ni", 28, 1.8, 2, "Nickel")
-cobalt = ("Co", 27, 1.8, 2, "Cobalt")
+cobalt = ("Co", 27, 1.8, 3, "Cobalt")
 cadmium = ("Cd", 48, 1.7, 2, "Cadmium")
 iron = ("Fe", 26, 1.8, 2, "Iron")
 chromium = ("Cr", 24, 1.6, 2, "Chromium")
-zinc = ("Zn", 30, 1.6, 2, "Zinc")
-manganese = ("Mn", 25, 1.5, 2, "Manganese")
+zinc = ("Zn", 30, 1.6, 1, "Zinc")
+manganese = ("Mn", 25, 1.5, 5, "Manganese")
 
 
 # Alkali Metal List
