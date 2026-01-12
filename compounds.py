@@ -1,3 +1,8 @@
+"""
+author: Aidan Lone, Husnain Sidhu, Muhammad Ali, Malaz Nakaweh, Dabeer Awan
+date: January 12, 2026
+purpose: Database for compound characteristics and chemical formulas
+"""
 compound_list = {
         #   {COMPOUND NAME}: [({CHEMICAL FORMULA}), {NUMBER OF ATOMS}, {TYPE OF COMPOUND}, {ENTHALPY OF FORMATION}]
             "Methane": [("CH4"), 5, "Organic (Alkane)", -74.4],
@@ -61,10 +66,11 @@ chemical_formula_list = ["AgAt", "AgBr", "AgCl", "AgF", "AgI",
 
 
 # List of compound names that will react in Reaction Lab
-chemical_name_list = ["Silver Astatide", "Silver Bromide", "Silver Chloride", "Silver Fluoride", "Silver Iodide",
-                      "Gold Astatide", "Gold Bromide", "Gold Chloride", "Gold Fluoride", "Gold Iodide",
-                      "Barium Astatide", "Barium Bromide", "Barium Chloride", "Barium Fluoride", "Barium Iodide",
-                      "Beryllium Astatide", "Beryllium Bromide", "Beryllium Chloride", "Beryllium Fluoride", "Beryllium Iodide",
+chemical_name_list = ["Silver Astatide", "Silver Bromide", "Silver Chloride", "Silver Fluoride", 
+                      "Silver Iodide", "Gold Astatide", "Gold Bromide", "Gold Chloride", 
+                      "Gold Fluoride", "Gold Iodide", "Barium Astatide", "Barium Bromide", 
+                      "Barium Chloride", "Barium Fluoride", "Barium Iodide", "Beryllium Astatide", 
+                      "Beryllium Bromide", "Beryllium Chloride", "Beryllium Fluoride", "Beryllium Iodide",
                       "Bismuth Astatide", "Bismuth Bromide", "Bismuth Chloride", "Bismuth Fluoride", "Bismuth Iodide",
                       "Calcium Astatide", "Calcium Bromide", "Calcium Chloride", "Calcium Fluoride", "Calcium Iodide",
                       "Cadmium Astatide", "Cadmium Bromide", "Cadmium Chloride", "Cadmium Fluoride", "Cadmium Iodide",
@@ -75,10 +81,11 @@ chemical_name_list = ["Silver Astatide", "Silver Bromide", "Silver Chloride", "S
                       "Iron Astatide", "Iron Bromide", "Iron Chloride", "Iron Fluoride", "Iron Iodide",
                       "Francium Astatide", "Francium Bromide", "Francium Chloride", "Francium Fluoride", "Francium Iodide",
                       "Mercury Astatide", "Mercury Bromide", "Mercury Chloride", "Mercury Fluoride", "Mercury Iodide",
-                      "Potassium Astatide", "Potassium Bromide", "Potassium Chloride", "Potassium Fluoride", "Potassium Iodide",
-                      "Lithium Astatide", "Lithium Bromide", "Lithium Chloride", "Lithium Fluoride", "Lithium Iodide",
-                      "Magnesium Astatide", "Magnesium Bromide", "Magnesium Chloride", "Magnesium Fluoride", "Magnesium Iodide",
-                      "Manganese Astatide", "Manganese Bromide", "Manganese Chloride", "Manganese Fluoride", "Manganese Iodide",
+                      "Potassium Astatide", "Potassium Bromide", "Potassium Chloride", "Potassium Fluoride", 
+                      "Potassium Iodide", "Lithium Astatide", "Lithium Bromide", "Lithium Chloride", 
+                      "Lithium Fluoride", "Lithium Iodide", "Magnesium Astatide", "Magnesium Bromide", 
+                      "Magnesium Chloride", "Magnesium Fluoride", "Magnesium Iodide", "Manganese Astatide", 
+                      "Manganese Bromide", "Manganese Chloride", "Manganese Fluoride", "Manganese Iodide",
                       "Sodium Astatide", "Sodium Bromide", "Sodium Chloride", "Sodium Fluoride", "Sodium Iodide",
                       "Nickel Astatide", "Nickel Bromide", "Nickel Chloride", "Nickel Fluoride", "Nickel Iodide",
                       "Lead Astatide", "Lead Bromide", "Lead Chloride", "Lead Fluoride", "Lead Iodide",
