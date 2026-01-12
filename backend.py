@@ -218,123 +218,206 @@ def react(independent_element: str, second_compound: str) -> str:
             else:
                 final_individual_element = final_individual_element
 
-        # Checks the element groups of each isolated element to print a unique message catered to the energy changes that would occur
-        if isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
+        # Checks the element groups of each isolated element to print a unique message 
+        # catered to the energy changes that would occur
+        if isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkali_Metal
+                    ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "  
+                            f"{initial_individual_element} and {first_element.full_name}," 
+                            f" producing {final_individual_element} and {final_compound} - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound} - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Loads of energy are produced!"
+            return f"A vigorous reaction between " \
+                   f"{initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and " \
+                    f"{initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                    f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) " \
+                    f"and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                    "Loads of energy are produced!"
         
-        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
+        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Alkaline_Earth_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound} - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound} - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Don't stand too close!"
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) " \
+                   f"and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "Don't stand too close!"
     
-        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
+        elif isinstance(first_element, Alkali_Metal) and isinstance(second_element, Transition_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound} - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound} - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound} - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The air around it starts to heat up!"
+            return f"A vigorous reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(an Alkali Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) " \
+                   f"and {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "The air around it starts to heat up!"
 
-        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkali_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Some bright flames are observed!"
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) " \
+                   f"and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "Some bright flames are observed!"
         
-        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Alkaline_Earth_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The resulting flames are scorching hot!"
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) " \
+                   f"and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "The resulting flames are scorching hot!"
     
-        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
+        elif isinstance(first_element, Alkaline_Earth_Metal) and isinstance(second_element, Transition_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}2 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}2 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) (an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). Ultraviolet lights spirals out of the reaction site!"
+            return f"A not-as-vigorous reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(an Alkaline Earth Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) " \
+                   f"and {final_compound}2 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "Ultraviolet lights spirals out of the reaction site!"
         
-        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkali_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkali_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkali_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The erupting sparks start to tickle!"
+            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkali Metal) " \
+                   f"and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "The erupting sparks start to tickle!"
         
-        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkaline_Earth_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Alkaline_Earth_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Alkaline_Earth_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The site brims with possibilities!"
+            return f"An unpredictable reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (an Alkaline Earth Metal) " \
+                   f"and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "The site brims with possibilities!"
     
-        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Transition_Metal) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
+        elif isinstance(first_element, Transition_Metal) and isinstance(second_element, Transition_Metal
+                        ) and isinstance(third_element, Halogen) and isinstance(element_attributes, Transition_Metal):
 
             # Writes this reaction into history.txt
             if os.path.isfile("history.txt"):
                 with open("history.txt", "a") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
             else:
                 with open("history.txt", "w") as f:
-                    f.write(f"User prompted a reaction between {initial_individual_element} and {first_element.full_name}, producing {final_individual_element} and {final_compound}3 - {dt_string}\n")
+                    f.write(f"User prompted a reaction between "
+                            f"{initial_individual_element} and {first_element.full_name}, producing "
+                            f"{final_individual_element} and {final_compound}3 - {dt_string}\n")
 
             # Returns a string describing the reaction in-question
-            return f"A unpredictable reaction between {initial_individual_element} ({first_element.full_name}) (a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). The material starts to feel lukewarm..."
+            return f"A unpredictable reaction between {initial_individual_element} ({first_element.full_name}) " \
+                   f"(a Transition Metal) and {initial_compound} ({chemical_name_list[chemical_formula_list.index(initial_compound)]}) " \
+                   f"occurred, producing {final_individual_element} ({element_attributes.full_name}) (a Transition Metal) " \
+                   f"and {final_compound}3 ({chemical_name_list[chemical_formula_list.index(final_compound)]}). " \
+                   "The material starts to feel lukewarm..."
     
     
     elif activity_series.index(first_element.name) == activity_series.index(second_element.name):
@@ -347,13 +430,16 @@ def react(independent_element: str, second_compound: str) -> str:
         # Writes this non-reaction into history.txt
         if os.path.isfile("history.txt"):
             with open("history.txt", "a") as f:
-                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                f.write(f"User prompted an impossible reaction between "
+                        f"{final_individual_element} and {final_compound} - {dt_string}\n")
         else:
             with open("history.txt", "w") as f:
-                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                f.write(f"User prompted an impossible reaction between "
+                        f"{final_individual_element} and {final_compound} - {dt_string}\n")
 
         # Returns a string, stating that the reaction could not occur
-        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
+        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) cannot react with itself! " \
+               f"{final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         
     else:
 
@@ -365,11 +451,15 @@ def react(independent_element: str, second_compound: str) -> str:
         # Writes this non-reaction into history.txt
         if os.path.isfile("history.txt"):
             with open("history.txt", "a") as f:
-                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                f.write(f"User prompted an impossible reaction between "
+                        f"{final_individual_element} and {final_compound} - {dt_string}\n")
         else:
             with open("history.txt", "w") as f:
-                f.write(f"User prompted an impossible reaction between {final_individual_element} and {final_compound} - {dt_string}\n")
+                f.write(f"User prompted an impossible reaction between "
+                        f"{final_individual_element} and {final_compound} - {dt_string}\n")
 
         # Returns a string, stating that the reaction could not occur
-        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series of metals, compared to {second_element.name}. {final_compound} ({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
+        return f"Reaction cannot occur; {first_element.name} ({first_element.full_name}) is lower on the activity series " \
+               f"of metals, compared to {second_element.name}. {final_compound} " \
+               f"({chemical_name_list[chemical_formula_list.index(final_compound)]}) remains as is."
         

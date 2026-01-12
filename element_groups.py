@@ -101,7 +101,8 @@ class Alkali_Metal(Element):
     Full Name: Sodium
     """
 
-    def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int, full_name: str) -> None:
+    def __init__(self, name: str, atomic_number: int, electronegativity: float, 
+                 bonding_capacity: int, full_name: str) -> None:
         """Initializes the Alkali Metal's attributes"""
         super().__init__(name, atomic_number, electronegativity, full_name)
 
@@ -170,7 +171,8 @@ class Alkaline_Earth_Metal(Element):
     Full Name: Magnesium
     """
 
-    def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int, full_name: str) -> None:
+    def __init__(self, name: str, atomic_number: int, electronegativity: float, 
+                 bonding_capacity: int, full_name: str) -> None:
         """Initializes the Alkaline Earth Metal's attributes"""
         super().__init__(name, atomic_number, electronegativity, full_name)
 
@@ -239,7 +241,8 @@ class Halogen(Element):
     Full Name: Chlorine
     """
 
-    def __init__(self, name: str, atomic_number: int, electronegativity: float, bonding_capacity: int, full_name: str) -> None:
+    def __init__(self, name: str, atomic_number: int, electronegativity: float, 
+                 bonding_capacity: int, full_name: str) -> None:
         """Initializes the Halogen's attributes"""
         super().__init__(name, atomic_number, electronegativity, full_name)
 
@@ -308,7 +311,8 @@ class Transition_Metal(Element):
     Full Name: Iron
     """
 
-    def __init__(self, name: str, atomic_number: int, electronegativity: float, possible_charges: int, full_name: str) -> None:
+    def __init__(self, name: str, atomic_number: int, electronegativity: float, 
+                 possible_charges: int, full_name: str) -> None:
         """Initializes the Transition Metal's attributes"""
         super().__init__(name, atomic_number, electronegativity, full_name)
         

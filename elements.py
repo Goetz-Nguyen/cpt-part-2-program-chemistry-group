@@ -67,7 +67,10 @@ alkaline_earth_metal_list = [beryllium, magnesium, calcium, strontium, barium, r
 halogen_list = [fluorine, chlorine, bromine, iodine, astatine]
 
 # Transition Metal List
-transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antimony, lead, tin, nickel, cobalt, cadmium, iron, chromium, zinc, manganese]
+transition_metal_list = [gold, platinum, silver, mercury, copper, bismuth, antimony, 
+                         lead, tin, nickel, cobalt, cadmium, iron, chromium, zinc, manganese]
 
 # Activity Series of Metals
-activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Be', 'Fr', 'Cu', 'Bi', 'Sb', 'Cs', 'Ra', 'Pb', 'Sn', 'Rb', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 'Ba', 'Li', 'Na', 'K']
+activity_series = ['Au', 'Pt', 'Ag', 'Hg', 'Be', 'Fr', 'Cu', 'Bi', 'Sb', 'Cs', 'Ra', 'Pb', 
+                   'Sn', 'Rb', 'Ni', 'Co', 'Cd', 'Fe', 'Cr', 'Zn', 'Mn', 'Mg', 'Ca', 'Sr', 
+                   'Ba', 'Li', 'Na', 'K']
