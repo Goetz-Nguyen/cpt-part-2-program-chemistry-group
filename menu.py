@@ -4,9 +4,17 @@ import contextlib
 import io
 import os
 from datetime import datetime as dt
+from element_groups import Element
+from elements import *
 
 class GUI:
+    """This is the main UI code.
+    
+    Attributes: None
+    Invariants: None
+    """
     def __init__(self):
+        """Init GUI code"""
         self.root = tk.Tk()
         self.root.title("CuriousChemists")
         self.root.geometry("900x560")
@@ -56,7 +64,11 @@ class GUI:
 
     # Data loading helper, has a failsafe so that if for some reason the files arent there,
     # It just makes some basic stuff so the program doesn't crash. (ALSO USES TRY EXCEPT)
-    def _load_dropdown_data(self):
+    def _load_dropdown_data(self) -> Element|list: 
+        """Loading data helper.
+        
+        Attr: None
+        Returns: metals, salts, compound_names, compound_list_data"""
         metals = []
         salts = []
         compound_names = []
@@ -102,9 +114,15 @@ class GUI:
         
     # Those are just history helpers for the ability to create/view/clear history.
     def _history_path(self) -> str:
+        """history file locator."""
         return "history.txt"
 
     def _read_history_text(self) -> str:
+        """history file reader
+        
+        Attr: None
+        Returns: history file contents.
+        """
         path = self._history_path()
         if not os.path.isfile(path):
             return ""
@@ -115,6 +133,11 @@ class GUI:
             return ""
 
     def _write_history_line(self, line: str):
+        """history file writer
+        
+        Attr: line -> str
+        Returns: None
+        """
         path = self._history_path()
         try:
             mode = "a" if os.path.isfile(path) else "w"
@@ -125,6 +148,7 @@ class GUI:
             pass
 
     def _clear_history(self):
+        """Returns a cleared copy of history, no contents"""
         path = self._history_path()
         if not os.path.isfile(path):
             messagebox.showinfo("Clear History", "No history.txt file to clear.")
@@ -143,6 +167,7 @@ class GUI:
             messagebox.showerror("Clear History", f"Could not clear history: {e}")
 
     def _refresh_history(self):
+        """History display refresh helper"""
         if not hasattr(self, "history_box"):
             return
 
@@ -164,6 +189,7 @@ class GUI:
 
     # Building the GUI
     def _build_nav(self):
+        """Build the left-most button array"""
         header = tk.Frame(self.nav, bg=self.C_PANEL)
         header.pack(fill="x", padx=14, pady=16)
 
@@ -182,6 +208,7 @@ class GUI:
         self._nav_btn("Quit", self.root.destroy, danger=True)
 
     def _nav_btn(self, text, cmd, danger=False):
+        """Helper to create the buttons as their own single objects but without the lengthy code."""
         button = tk.Button(self.nav,
                            text=text,
                            command=cmd,
@@ -196,6 +223,7 @@ class GUI:
         button.pack(fill="x", padx=14, pady=6)
 
     def _build_home(self):
+        """Builds homepage """
         frame = ttk.Frame(self.main)
         self.frames["home"] = frame
 
@@ -213,7 +241,42 @@ class GUI:
                             "Logs are saved to history.txt.",
                  bg=self.C_CARD, fg=self.C_MUTED, font=("Segoe UI", 11), justify="left").pack(anchor="w", padx=18, pady=(0, 14))
 
+    def _inspect_each_element(self, metal: str, salt: str):
+        """Helper to inspect each element inside of the reaction lab
+        
+        args: metal, salt (both str)
+        returns: string of info on each element in reaction"""
+        try:
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+                import backend
+
+            if not hasattr(backend, "identify_element_group"):
+                return "Error: backend.identify_element_group() not found."
+
+            _, first_element, second_element, third_element = backend.identify_element_group(
+                               metal, salt, alkali_metal_list,
+                               alkaline_earth_metal_list, halogen_list, 
+                               transition_metal_list)
+            
+            out = [first_element.__str__(), second_element.__str__(), third_element.__str__()]
+
+            out_str = "\n-------------------------\n".join(out)
+
+            return str(out_str)
+        except Exception as exception:
+            return f"Error: {exception}"      
+
     def _build_reaction_lab(self):
+        """
+        Builds the UI for the Reaction Lab
+        
+        Arguements:
+            None
+
+        Returns:
+            None
+        """
         frame = ttk.Frame(self.main)
         self.frames["react"] = frame
 
@@ -240,8 +303,16 @@ class GUI:
                   activeforeground="#07101a",
                   relief="flat",
                   font=("Segoe UI", 11, "bold"),
-                  padx=18, pady=8).pack(side="right")
+                  padx=18, pady=8).pack(side="right", padx=(10, 0))
 
+        tk.Button(row, text="INSPECT", command=self._on_inspect_elements,
+                  bg=self.C_ACCENT, fg="white",
+                  activebackground=self.C_ACCENT2,
+                  activeforeground="#07101a",
+                  relief="flat",
+                  font=("Segoe UI", 11, "bold"),
+                  padx=18, pady=8).pack(side="right", padx=(10, 0))
+        
         out_wrap = tk.Frame(card, bg=self.C_CARD)
         out_wrap.pack(fill="both", expand=True, padx=18, pady=(6, 18))
 
@@ -257,6 +328,7 @@ class GUI:
         self.out_box.configure(state="disabled")
 
     def _build_compound_inspector(self):
+        """builds compound inspector page"""
         frame = ttk.Frame(self.main)
         self.frames["inspect"] = frame
 
@@ -303,7 +375,7 @@ class GUI:
 
     def _build_organic_generator(self):
         """
-        GUI version of organic_compound_generator.py:
+        GUI version of organic_compound_generator.py (Aidan's work, reworked by Malaz):
         - Same prefix dictionary
         - Same formula logic (alkane/ene/yne)
         - Same history write format: "User created <name> (<formula>) - <timestamp>"
@@ -313,7 +385,7 @@ class GUI:
 
         tk.Label(frame, text="Organic Compound Generator", bg=self.C_BG, fg=self.C_TEXT,
                  font=("Segoe UI", 22, "bold")).pack(anchor="w", padx=24, pady=(22, 6))
-        tk.Label(frame, text="Generate a simple hydrocarbon name + formula.",
+        tk.Label(frame, text="Generate a simple hydrocarbon name + formula.\nAlkane -> Single-bonded carbon\nAlkene -> Double-bonded carbon\nAlkyne -> Triple-bonded carbon",
                  bg=self.C_BG, fg=self.C_MUTED, font=("Segoe UI", 11)).pack(anchor="w", padx=24, pady=(0, 14))
 
         card = ttk.Frame(frame, style="Card.TFrame")
@@ -368,6 +440,7 @@ class GUI:
         self.org_box.configure(state="disabled")
 
     def _build_history_viewer(self):
+        """builds the history page"""
         frame = ttk.Frame(self.main)
         self.frames["history"] = frame
 
@@ -429,6 +502,7 @@ class GUI:
 
     # Those are action helpers
     def _on_react(self):
+        """Helper to use react function in the backend"""
         metal = (self.metal_var.get() or "").strip()
         salt = (self.salt_var.get() or "").strip()
 
@@ -446,7 +520,27 @@ class GUI:
         self.out_box.insert("1.0", f"Inputs:\n  Metal = {metal}\n  Salt  = {salt}\n\nOutput:\n  {result}\n")
         self.out_box.configure(state="disabled")
 
+    def _on_inspect_elements(self):
+        """helper to inspect element, also from the backend."""
+        metal = (self.metal_var.get() or "").strip()
+        salt = (self.salt_var.get() or "").strip()
+
+        if not metal or not salt:
+            messagebox.showwarning("Missing input", "Please select both a metal and a salt.")
+            return
+        if "-" not in salt:
+            messagebox.showwarning("Invalid salt", "Salt should look like 'Na-Cl'.")
+            return
+
+        result = self._inspect_each_element(metal, salt)
+
+        self.out_box.configure(state="normal")
+        self.out_box.delete("1.0", "end")
+        self.out_box.insert("1.0", f"Inputs:\n  Metal = {metal}\n  Salt  = {salt}\n\nOutput:\n  {result}\n")
+        self.out_box.configure(state="disabled")
+
     def _on_inspect_compound(self):
+        """Inspects compound helper."""
         name = (self.compound_var.get() or "").strip()
         if not name:
             messagebox.showwarning("Missing input", "Please select a compound.")
@@ -464,7 +558,7 @@ class GUI:
             f"Enthalpy of Formation: {props[3]}",
         ]
 
-        # keep same style as your other modules
+        # keep same style as our other modules
         dt_string = dt.now().strftime("%Y-%m-%d %H:%M:%S")
         self._write_history_line(f"User inspected {name} - {dt_string}")
 
@@ -474,7 +568,8 @@ class GUI:
         self.inspect_box.configure(state="disabled")
 
     def _on_generate_organic(self):
-        # Matches the logic in organic_compound_generator.py :contentReference[oaicite:2]{index=2}
+        """Runs generate organic compound from the backend"""
+        # Matches the logic in organic_compound_generator.py (Aidan's work, reworked by Malaz)
         prefix_dictionary = {
             1: "Meth", 2: "Eth", 3: "Prop", 4: "But", 5: "Pent",
             6: "Hex", 7: "Hept", 8: "Oct", 9: "Non", 10: "Dec"
@@ -501,7 +596,6 @@ class GUI:
             return
 
         dt_string = dt.now().strftime("%Y-%m-%d %H:%M:%S")
-        # EXACT format from your generator file :contentReference[oaicite:3]{index=3}
         self._write_history_line(f"User created {name} ({formula}) - {dt_string}")
 
         self.org_box.configure(state="normal")

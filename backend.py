@@ -37,7 +37,7 @@ def _decomposition(second_compound: str) -> list:
 # Identifying the element groups that each element in the reaction belong to
 def identify_element_group(individual_element: str, second_compound: str, 
                            alkali_metal_list: list, alkaline_earth_metal_list: list, halogen_list: list, 
-                           transition_metal_list: list) -> Element:
+                           transition_metal_list: list) -> list|Element:
     """
     Takes the decomposed elements and associates them with an appropriate group
     
@@ -50,16 +50,18 @@ def identify_element_group(individual_element: str, second_compound: str,
         - halogen_list (list): A list containing all possible halogens
         - transition_metal_list (list): A list containing all possible transition metals
 
-    Returns:
-
+    Returns (list):
+        list - The decomposed list of individual elements in the salt
         Element - Individual elements, this time associated with a class
 
     Example:
 
     >>> compound = "Ag-Cl"
     >>> individual_element = "Be"
-    >>> identify_element_group(individual_element, compound)
-
+    >>> identify_element_group(individual_element, compound, alkali_metal_list,
+                               alkaline_earth_metal_list, halogen_list, 
+                               transition_metal_list)
+    ["Ag", "Cl"]
     Alkaline_Earth_Metal("Be", 4, 1.5, 2, "Beryllium")
     Transition_Metal("Ag", 47, 1.9, 1, "Silver")
     Halogen("Cl", 17, 3.0, 1, "Chlorine")

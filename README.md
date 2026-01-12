@@ -32,17 +32,21 @@ Real-World Applications of this Program:
 
 
 
-                                                                    Works Cited
+                                            Works Cited
 
 Ashenhurst, James. “Primary, Secondary, Tertiary, and Quaternary in Organic Chemistry.” Master Organic Chemistry, 16 June 2010, 
     https://www.masterorganicchemistry.com/2010/06/16/1-2-3-4/.
+
 Biggs, Ben, and Charlie Wood published. “How the Periodic Table of the Elements Is Arranged.” Live Science, 13 Dec. 2021, 
     https://www.livescience.com/28507-element-groups.html.
+
 Khan, Sal. “Single Replacement Reactions (Article).” Khan Academy, 
     https://www.khanacademy.org/science/hs-chemistry/x2613d8165d88df5e:chemical-reactions/x2613d8165d88df5e:types-of-chemical-reactions/a/single-replacement-reactions. 
     Accessed 11 Jan. 2026.
+
 Lower, Stephen. “P3: Activity Series of Metals.” Chemistry LibreTexts, 18 Feb. 2014, 
     https://chem.libretexts.org/Ancillary_Materials/Reference/Reference_Tables/Electrochemistry_Tables/P3%3A_Activity_Series_of_Metals.
+    
 Smith, Paul F. “A Quantitative Solubility Rules Table.” Journal of Chemical Education, vol. 102, no. 6, June 2025, pp. 2384–88. ACS Publications, 
     https://doi.org/10.1021/acs.jchemed.5c00117.
 
